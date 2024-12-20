@@ -1,9 +1,14 @@
 pipeline {
-  agent any 
+  agent any
      tools {
-        maven 'mav3.9'
+        maven 'maven9'
     }
     stages {
+        stage('SCM Checkout') {
+            steps{
+                git url:'https://github.com/jiyendra/simple-app.git', branch: 'jiyendra/java-docker-web'
+            }
+        }
         stage('Build') {
             steps {
                 sh 'mvn clean package'
@@ -25,4 +30,4 @@ pipeline {
             }
         }
     }
-}
+}                        
